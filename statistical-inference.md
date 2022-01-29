@@ -11,12 +11,17 @@
 
 #### 3. What would be the hazards of letting users sneak a peek at the other bucket in an A/B test?
   - The user might not act the same suppose had they not seen the other bucket. You are essentially adding additional variables of whether the user peeked the other bucket, which are not random across groups.
+  - *Spillover effect: If user A is in the treatment group and is connected with user B in the control group, user A's change in behavior might impact user B's behavior.*
+    - *Spillover effect might not only lead to an increaased engagement in the treatment group, but also in the control group. This dilutes the positive effect of the treatment, which can ultimately lead to wrong conclustions when using the standard AB testing approach in especially social network analysis or a collaborative application.* [AB-Testing challenges in social networks](https://towardsdatascience.com/ab-testing-challenges-in-social-networks-e67611c92916#:~:text=Cluster%20sampling%2C%20also%20known%20as,to%20deal%20with%20spillover%20effects.&text=When%20an%20AB%2DTest%20is,to%20the%20aforementioned%20spillover%20effects.)
 
 #### 4. What would be some issues if blogs decide to cover one of your experimental groups?
   - Same as the previous question. The above problem can happen in larger scale.
 
 #### 5. How would you conduct an A/B test on an opt-in feature? 
-  - Ask someone for more details.
+  - *It is a somewhat a ambiguous question* [reference](https://www.kdnuggets.com/2017/03/17-data-science-interview-questions-answers-part-3.html/2)
+   *1. How would you conduct an A/B test on an opt-in version of a feature to a non-opt-in version?
+    2. How would you conduct an A/B test on the adoption (or use) of an opt-in feature (i.e., test the actual opting-in)?
+    3. How would you conduct an A/B test on different version of an opt-in feature (i.e., for those having already opted in)?*
 
 #### 6. How would you run an A/B test for many variants, say 20 or more?
   - one control, 20 treatment, if the sample size for each group is big enough.

@@ -51,7 +51,7 @@
 
 #### 9. What is a p-value? What is the difference between type-1 and type-2 error?
   - [en.wikipedia.org/wiki/P-value](https://en.wikipedia.org/wiki/P-value)
-    - * The probability of obtaining test results at least as extreme as the observed results, under the assumption that the null hypothsis is correct. A very small p-value means that such an extreme observed outcome would be very unlikely under the null hypothesis.*
+    - *The probability of obtaining test results at least as extreme as the observed results, under the assumption that the null hypothsis is correct. A very small p-value means that such an extreme observed outcome would be very unlikely under the null hypothesis.*
   - type-1 error (false positives): rejecting Ho when Ho is true
   - type-2 error (false negatives): not rejecting Ho when Ha is true
 
@@ -62,6 +62,9 @@
 
 #### 11. How would you design an experiment to determine the impact of latency on user engagement?
   - The best way I know to quantify the impact of performance is to isolate just that factor using a slowdown experiment, i.e., add a delay in an A/B test.
+  - *Page load speed: to see if users are more likely to perform clicks on the result page that is served with lower latency, # clicks / # page views; revenue / # page views*
+  - *Chat response: high latency leads to channel waiting*
+  - *Video streaming, cloud gaming* [reference](https://blog.pusher.com/how-latency-affects-user-engagement/)
 
 #### 12. What is maximum likelihood estimation? Could there be any case where it doesn’t exist?
   - A method for parameter optimization (fitting a model). We choose parameters so as to maximize the likelihood function (how likely the outcome would happen given the current data and our model).
@@ -98,3 +101,15 @@ Attrition: Attrition bias is a kind of selection bias caused by attrition (loss 
   - If we have 9 observations for both groups in total (e.g., A: 5, B: 4), then the number of permutation tests we can perform is: 9!
   - Covert test-statistics -> p-value:
     - P-value = # perm.t.s > obs.t.s / # permutation tests
+
+#### Maximum Likelihood Estimator (MLE)
+  - [statquest video](https://www.youtube.com/watch?v=XepXtl9YKwc): "This location ofor the mean maximizs the likelihood of observing the weights we measured. Thus, it is the maximum likelihood estimaate for the mean."
+    - When someone says that they have the mle for the mean or the standard deviation, or for something else, you know that they found the value fo the mean or std that maximizes the likelihood that you observed the things you observed.
+    - "likelihood" specifically refers to where you are trying to find the optimal value for the mean or std for a distribution given a bunch of observed measurements.
+  - [Exponential Distribution Example](https://www.youtube.com/watch?v=p3T-_LMrvBc)
+    1. Exponential Distribution: <img src="https://render.githubusercontent.com/render/math?math=y=\lambda e^{-\lambda x}">
+    2. What is the likelihood of lambda given first measurement, x1 -> <img src="https://render.githubusercontent.com/render/math?math=L(\lambda|x_1)=\lambda e^{-\lambda x_1}">
+    3.  <img src="https://render.githubusercontent.com/render/math?math=L(\lambda|x_1,x_2,...,x_n) = L(\lambda|x_1)L(\lambda|x_2)...L(\lambda|x_n)"> 
+    4.  <img src="https://render.githubusercontent.com/render/math?math=\lambda^n[e^{-\lambda(x_1+x_2+...+x_n}]">
+    5.  Take the derivative of this, solve for lambda when the derivative is set to be equal to 0
+    6.  The mle for lambda is: <img src="https://render.githubusercontent.com/render/math?math=\lambda = \frac {n} {x_1 + x_2 +...+x_n}">

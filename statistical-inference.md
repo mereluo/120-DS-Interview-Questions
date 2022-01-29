@@ -27,10 +27,10 @@
   - one control, 20 treatment, if the sample size for each group is big enough.
   - Ways to attempt to correct for this include changing your confidence level (e.g. Bonferroni Correction) or doing family-wide tests before you dive in to the individual metrics (e.g. Fisher's Protected LSD).
   - *Multiple Comparison Problem: the chance of getting a false positive increases when the number of variants increases*
-    - *False positive formula*: $1-(1-\alpha)^m$ *with m being the total number of variations tested*
+    - *False positive formula*: <img src="https://render.githubusercontent.com/render/math?math=1-(1-\alpha)^m"> *with m being the total number of variations tested*
   - *Bonferroni correction*:
-    - *formula:* $\alpha/m$
-    - *For example, if you are testing m = 8 hypotheses with a desired $\alpha$ = 0.05, then the Bonferroni correction would test each individual hypothesis at $\alpha$ = 0.05/8 = 0.00625
+    - *formula:*  <img src="https://render.githubusercontent.com/render/math?math=\alpha/m">
+    - *For example, if you are testing m = 8 hypotheses with a desired $\alpha$ = 0.05, then the Bonferroni correction would test each individual hypothesis at* $\alpha$ = 0.05/8 = 0.00625
 
 #### 7. How would you run an A/B test if the observations are extremely right-skewed?
   - lower the variability by modifying the KPI

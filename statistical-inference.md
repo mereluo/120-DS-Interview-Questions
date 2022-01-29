@@ -19,13 +19,15 @@
 
 #### 5. How would you conduct an A/B test on an opt-in feature? 
   - *It is a somewhat a ambiguous question* [reference](https://www.kdnuggets.com/2017/03/17-data-science-interview-questions-answers-part-3.html/2)
-   *1. How would you conduct an A/B test on an opt-in version of a feature to a non-opt-in version?
-    2. How would you conduct an A/B test on the adoption (or use) of an opt-in feature (i.e., test the actual opting-in)?
-    3. How would you conduct an A/B test on different version of an opt-in feature (i.e., for those having already opted in)?*
+    1. *How would you conduct an A/B test on an opt-in version of a feature to a non-opt-in version?*
+    2. *How would you conduct an A/B test on the adoption (or use) of an opt-in feature (i.e., test the actual opting-in)?*
+    3. *How would you conduct an A/B test on different version of an opt-in feature (i.e., for those having already opted in)?*
 
 #### 6. How would you run an A/B test for many variants, say 20 or more?
   - one control, 20 treatment, if the sample size for each group is big enough.
   - Ways to attempt to correct for this include changing your confidence level (e.g. Bonferroni Correction) or doing family-wide tests before you dive in to the individual metrics (e.g. Fisher's Protected LSD).
+  - *Multiple Comparison Problem: the chance of getting a false positive increases when the number of variants increases*
+    - *False positive formula*: $$1-(1-\alpha)^m$$
 
 #### 7. How would you run an A/B test if the observations are extremely right-skewed?
   - lower the variability by modifying the KPI

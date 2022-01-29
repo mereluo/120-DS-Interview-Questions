@@ -70,25 +70,35 @@
   - A method for parameter optimization (fitting a model). We choose parameters so as to maximize the likelihood function (how likely the outcome would happen given the current data and our model).
   - maximum likelihood estimation (MLE) is a method of [estimating](https://en.wikipedia.org/wiki/Estimator "Estimator") the [parameters](https://en.wikipedia.org/wiki/Statistical_parameter "Statistical parameter") of a [statistical model](https://en.wikipedia.org/wiki/Statistical_model "Statistical model") given observations, by finding the parameter values that maximize the [likelihood](https://en.wikipedia.org/wiki/Likelihood "Likelihood") of making the observations given the parameters. MLE can be seen as a special case of the [maximum a posteriori estimation](https://en.wikipedia.org/wiki/Maximum_a_posteriori_estimation "Maximum a posteriori estimation") (MAP) that assumes a [uniform](https://en.wikipedia.org/wiki/Uniform_distribution_\(continuous\) "Uniform distribution \(continuous\)") [prior distribution](https://en.wikipedia.org/wiki/Prior_probability "Prior probability") of the parameters, or as a variant of the MAP that ignores the prior and which therefore is [unregularized](https://en.wikipedia.org/wiki/Regularization_\(mathematics\) "Regularization \(mathematics\)").
   - for gaussian mixtures, non parametric models, it doesn’t exist
+  - *For normal distribution: sigma = (x - mu)^2, if x = mu, then sigma = 0, which is not allowed. So the MLE does not exist in this case.*
+  - *For uniform distribution, if the interval included its boundary, then clearly the MLE would be theta = max[X_i]. But since this interval does not include its boundary, then MLE cannot be the maximum, and therefore an MLE does not exist*
 
 #### 13. What’s the difference between a MAP, MOM, MLE estimator? In which cases would you want to use each?
-  - MAP estimates the posterior distribution given the prior distribution and data which maximizes the likelihood function. MLE is a special case of MAP where the prior is uninformative uniform distribution.
-  - MOM sets moment values and solves for the parameters. MOM is not used much anymore because maximum likelihood estimators have higher probability of being close to the quantities to be estimated and are more often unbiased.
+  - MAP (Maximum A Posteriori) estimates the posterior distribution given the prior distribution and data which maximizes the likelihood function. MLE is a special case of MAP where the prior is uninformative uniform distribution. [reference](https://agustinus.kristia.de/techblog/2017/01/01/mle-vs-map/)
+  - MOM (Method of Moments) sets moment values and solves for the parameters. MOM is not used much anymore because maximum likelihood estimators have higher probability of being close to the quantities to be estimated and are more often unbiased.
 
 #### 14. What is a confidence interval and how do you interpret it?
   - For example, 95% confidence interval is an interval that when constructed for a set of samples each sampled in the same way, the constructed intervals include the true mean 95% of the time.
+  - *If we get a set of samples each sampled in the same way, and we constructed a interval for each of the sample, the constructed intervals include the true population mean 95% of the time. If I have 100 intervals, then 95 of them include the true mean.*
+  - Want to estimate population mean (mu), using x_bar:
+    - <img src="https://render.githubusercontent.com/render/math?math=x_bar \pm t(\frac {s} {sqrt{n}})">
+  - Want to estimate population porportion (pi), using p:
+    - <img src="https://render.githubusercontent.com/render/math?math=p \pm z(\frac {p(1-p} {n})">
   - if confidence intervals are constructed using a given confidence level in an infinite number of independent experiments, the proportion of those intervals that contain the true value of the parameter will match the confidence level.
+  - *P-value's relationship with confidence interval*
 
 #### 15. What is unbiasedness as a property of an estimator? Is this always a desirable property when performing inference? What about in data analysis or predictive modeling?
-  - Unbiasedness means that the expectation of the estimator is equal to the population value we are estimating. This is desirable in inference because the goal is to explain the dataset as accurately as possible. However, this is not always desirable for data analysis or predictive modeling as there is the bias variance tradeoff. We sometimes want to prioritize the generalizability and avoid overfitting by reducing variance and thus increasing bias.
+  - Unbiasedness means that the expectation of the estimator is equal to the population value we are estimating. 
+  - *E(estimator) = Population parameter*
+  - This is desirable in inference because the goal is to explain the dataset as accurately as possible. However, this is not always desirable for data analysis or predictive modeling as there is the bias variance tradeoff. We sometimes want to prioritize the generalizability and avoid overfitting by reducing variance and thus increasing bias.
 
 #### 16. What is Selection Bias?
-Selection bias is a kind of error that occurs when the researcher decides who is going to be studied. It is usually associated with research where the selection of participants isn’t random. It is sometimes referred to as the selection effect. It is the distortion of statistical analysis, resulting from the method of collecting samples. If the selection bias is not taken into account, then some conclusions of the study may not be accurate.
-The types of selection bias include:
-Sampling bias: It is a systematic error due to a non-random sample of a population causing some members of the population to be less likely to be included than others resulting in a biased sample.
-Time Interval bias: A trial may be terminated early at an extreme value (often for ethical reasons), but the extreme value is likely to be reached by the variable with the largest variance, even if all variables have a similar mean.
-Data: When specific subsets of data are chosen to support a conclusion or rejection of bad data on arbitrary grounds, instead of according to previously stated or generally agreed criteria.
-Attrition: Attrition bias is a kind of selection bias caused by attrition (loss of participants) discounting trial subjects/tests that did not run to completion.
+  - Selection bias is a kind of error that occurs when the researcher decides who is going to be studied. It is usually associated with research where the selection of participants isn’t random. It is sometimes referred to as the selection effect. It is the distortion of statistical analysis, resulting from the method of collecting samples. If the selection bias is not taken into account, then some conclusions of the study may not be accurate.
+  - The types of selection bias include:
+    - Sampling bias: It is a systematic error due to a non-random sample of a population causing some members of the population to be less likely to be included than others resulting in a biased sample.
+    - Time Interval bias: A trial may be terminated early at an extreme value (often for ethical reasons), but the extreme value is likely to be reached by the variable with the largest variance, even if all variables have a similar mean.
+    - Data: When specific subsets of data are chosen to support a conclusion or rejection of bad data on arbitrary grounds, instead of according to previously stated or generally agreed criteria.
+    - Attrition: Attrition bias is a kind of selection bias caused by attrition (loss of participants) discounting trial subjects/tests that did not run to completion.
 
 ### Related Statistical Concepts
 
@@ -103,7 +113,7 @@ Attrition: Attrition bias is a kind of selection bias caused by attrition (loss 
     - P-value = # perm.t.s > obs.t.s / # permutation tests
 
 #### Maximum Likelihood Estimator (MLE)
-  - [statquest video](https://www.youtube.com/watch?v=XepXtl9YKwc): "This location ofor the mean maximizs the likelihood of observing the weights we measured. Thus, it is the maximum likelihood estimaate for the mean."
+  - [statquest video](https://www.youtube.com/watch?v=XepXtl9YKwc): "This location of the mean maximizs the likelihood of observing the weights we measured. Thus, it is the maximum likelihood estimaate for the mean."
     - When someone says that they have the mle for the mean or the standard deviation, or for something else, you know that they found the value fo the mean or std that maximizes the likelihood that you observed the things you observed.
     - "likelihood" specifically refers to where you are trying to find the optimal value for the mean or std for a distribution given a bunch of observed measurements.
   - [Exponential Distribution Example](https://www.youtube.com/watch?v=p3T-_LMrvBc)

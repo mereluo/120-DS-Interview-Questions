@@ -5,7 +5,9 @@
   - MANOVA to compare different means
 
 #### 2. What might be the benefits of running an A/A test, where you have two buckets who are exposed to the exact same product?
-  - Verify the sampling algorithm is random.
+  - Verify the sampling algorithm is random. *The experiment population and control population should be comparable.*
+    - *Each condition is randomly assigned to each group with a probability of 0.5. Use this to compute SD of binomial with probability 0.5 of success. Calculate the confidence interval. The observved fraction of control group is greater than the upper bound of CI => there is something wrong with the setup.*
+  - *Use A/A test to estimate the empirical variance of the metrics. -- Compare the difference so that the difference is driven by the underlying variability, such as system, user populations, etc. If you see a lot of variability in a metric in an A/A test, the metric might be too sensitive to use in the experiment.*
 
 #### 3. What would be the hazards of letting users sneak a peek at the other bucket in an A/B test?
   - The user might not act the same suppose had they not seen the other bucket. You are essentially adding additional variables of whether the user peeked the other bucket, which are not random across groups.

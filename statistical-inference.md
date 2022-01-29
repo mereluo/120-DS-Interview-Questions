@@ -30,26 +30,35 @@
     - *False positive formula*: <img src="https://render.githubusercontent.com/render/math?math=1-(1-\alpha)^m"> *with m being the total number of variations tested*
   - *Bonferroni correction*:
     - *formula:*  <img src="https://render.githubusercontent.com/render/math?math=\alpha/m">
-    - *For example, if you are testing m = 8 hypotheses with a desired $\alpha$ = 0.05, then the Bonferroni correction would test each individual hypothesis at* $\alpha$ = 0.05/8 = 0.00625
+    - *For example, if you are testing m = 8 hypotheses with a desired \alpha = 0.05, then the Bonferroni correction would test each individual hypothesis at* \alpha = 0.05/8 = 0.00625
+  - *It might be tempted to declare that the variation with the highest life the winner. Even though one variation may be prforming the best in comparison to the control, you may not have significance between it and the other variations.* [reference](https://www.quora.com/How-would-you-run-an-A-B-test-for-many-variants-say-20-or-more)
 
 #### 7. How would you run an A/B test if the observations are extremely right-skewed?
   - lower the variability by modifying the KPI
+    - Original metrics: revenue from clicks -> contains a lot of zero (people don't purchase or click on ads), and a long right tail
+    - Instead of revenue, look at (1) an indicator for conversion (yes/no), and the conditional (revenue if purchased; null otherwise).
+    - [Example at 3.2.1.](https://exp-platform.com/journal-survey/)
   - cap values
-  - percentile metrics
+    - Capping time on site to 30 minutes is a common strategy; cappinng at a certain dollar values and items purchased lowered the variance.
+  - percentile metrics: instead of mean, look at some percentile, such as 90th. (e.g., time-to-onload event for page-load, time-to-click)
   - log transform
   - <https://www.quora.com/How-would-you-run-an-A-B-test-if-the-observations-are-extremely-right-skewed>
 
 #### 8. I have two different experiments that both change the sign-up button to my website. I want to test them at the same time. What kinds of things should I keep in mind?
   - exclusive -> ok
+  - *Run the tests in parallel, but on isolated audiences (the audience experiencing test 1 will not participate in test 2, and vice versa)*
+  - *Unit of diversion: cookies, to avoid if one sees inconsistent sign-up button on their site*
 
 #### 9. What is a p-value? What is the difference between type-1 and type-2 error?
   - [en.wikipedia.org/wiki/P-value](https://en.wikipedia.org/wiki/P-value)
-  - type-1 error: rejecting Ho when Ho is true
-  - type-2 error: not rejecting Ho when Ha is true
+    - * The probability of obtaining test results at least as extreme as the observed results, under the assumption that the null hypothsis is correct. A very small p-value means that such an extreme observed outcome would be very unlikely under the null hypothesis.*
+  - type-1 error (false positives): rejecting Ho when Ho is true
+  - type-2 error (false negatives): not rejecting Ho when Ha is true
 
 #### 10. You are AirBnB and you want to test the hypothesis that a greater number of photographs increases the chances that a buyer selects the listing. How would you test this hypothesis?
   - For randomly selected listings with more than 1 pictures, hide 1 random picture for group A, and show all for group B. Compare the booking rate for the two groups.
-  - Ask someone for more details.
+  - *"How many more photos do we need to have to see the increase"*
+  - *Potential metrics: # clicks / # listings per user; # bookings / # users in each group;*
 
 #### 11. How would you design an experiment to determine the impact of latency on user engagement?
   - The best way I know to quantify the impact of performance is to isolate just that factor using a slowdown experiment, i.e., add a delay in an A/B test.

@@ -99,6 +99,9 @@
     - Time Interval bias: A trial may be terminated early at an extreme value (often for ethical reasons), but the extreme value is likely to be reached by the variable with the largest variance, even if all variables have a similar mean.
     - Data: When specific subsets of data are chosen to support a conclusion or rejection of bad data on arbitrary grounds, instead of according to previously stated or generally agreed criteria.
     - Attrition: Attrition bias is a kind of selection bias caused by attrition (loss of participants) discounting trial subjects/tests that did not run to completion.
+  - Selection bias threatens both internal and external validity.
+    - Internal validity: independent variables are correlatedd with a disturbance term (i.e., error) and analyses based on biased samples can lead to inaccurate estmates of the relationships between variables (e.g., regression coefficients)
+    - External validity: biased sample might not be generalizable to the intended population.
 
 ### Related Statistical Concepts
 

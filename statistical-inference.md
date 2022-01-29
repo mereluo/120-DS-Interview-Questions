@@ -57,3 +57,16 @@
 
 #### 15. What is unbiasedness as a property of an estimator? Is this always a desirable property when performing inference? What about in data analysis or predictive modeling?
   - Unbiasedness means that the expectation of the estimator is equal to the population value we are estimating. This is desirable in inference because the goal is to explain the dataset as accurately as possible. However, this is not always desirable for data analysis or predictive modeling as there is the bias variance tradeoff. We sometimes want to prioritize the generalizability and avoid overfitting by reducing variance and thus increasing bias.
+
+
+### Related Statistical Concepts
+
+#### Permutation Tests
+  - Why Use Permutation Approach? [(Video)](https://www.youtube.com/watch?v=rJ3AZCQuiLw)
+    - Small Sample Size
+    - Assumptions (for parametric approach) not met
+    - Test something other than classic approaches comparing Means and Medians
+    - Difficult to estimate SE for test-statistic
+  - If we have 9 observations for both groups in total (e.g., A: 5, B: 4), then the number of permutation tests we can perform is: 9!
+  - Covert test-statistics -> p-value:
+    - P-value = # perm.t.s > obs.t.s / # permutation tests

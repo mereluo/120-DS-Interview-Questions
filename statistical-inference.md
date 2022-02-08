@@ -7,7 +7,7 @@ Updated on Jan 29th
 
 #### 2. What might be the benefits of running an A/A test, where you have two buckets who are exposed to the exact same product?
   - Verify the sampling algorithm is random. *The experiment population and control population should be comparable.*
-    - *Each condition is randomly assigned to each group with a probability of 0.5. Use this to compute SD of binomial with probability 0.5 of success. Calculate the confidence interval. The observved fraction of control group is greater than the upper bound of CI => there is something wrong with the setup.*
+    - *Each condition is randomly assigned to each group with a probability of 0.5. Use this to compute SD of binomial with probability 0.5 of success. Calculate the confidence interval. The observed fraction of control group is greater than the upper bound of CI => there is something wrong with the setup.*
   - *Use A/A test to estimate the empirical variance of the metrics. -- Compare the difference so that the difference is driven by the underlying variability, such as system, user populations, etc. If you see a lot of variability in a metric in an A/A test, the metric might be too sensitive to use in the experiment.*
 
 #### 3. What would be the hazards of letting users sneak a peek at the other bucket in an A/B test?
@@ -55,6 +55,8 @@ Updated on Jan 29th
     - *The probability of obtaining test results at least as extreme as the observed results, under the assumption that the null hypothsis is correct. A very small p-value means that such an extreme observed outcome would be very unlikely under the null hypothesis.*
   - type-1 error (false positives): rejecting Ho when Ho is true
   - type-2 error (false negatives): not rejecting Ho when Ha is true
+  - E.g., suppose that a vaccine study produced a p-value of 0.04. This p-value indicates that if the vaccine had no effect, you would obtain the observed differeence or more extreme difference in 4% of studies.
+  - Suppose that we want to know the average height of men in the US. We get the measurement of a sample of men in the US with an average height of 175 cm. The question then is assuming the true average height is 175 cm, how likely will we observe the data. If the p-value is very low (<0.05), it means that assuming the true average height is 175 cm the chance that we observe this data is very low or the data we observe is very extreme, thus we believe the true value should not be 175 cm.
 
 #### 10. You are AirBnB and you want to test the hypothesis that a greater number of photographs increases the chances that a buyer selects the listing. How would you test this hypothesis?
   - For randomly selected listings with more than 1 pictures, hide 1 random picture for group A, and show all for group B. Compare the booking rate for the two groups.
@@ -85,8 +87,6 @@ Updated on Jan 29th
     - <img src="https://render.githubusercontent.com/render/math?math=x_bar \pm t(\frac {s} {sqrt{n}})">
   - Want to estimate population porportion (pi), using p:
     - <img src="https://render.githubusercontent.com/render/math?math=p \pm z(\frac {p(1-p} {n})">
-  - if confidence intervals are constructed using a given confidence level in an infinite number of independent experiments, the proportion of those intervals that contain the true value of the parameter will match the confidence level.
-  - *P-value's relationship with confidence interval*
 
 #### 15. What is unbiasedness as a property of an estimator? Is this always a desirable property when performing inference? What about in data analysis or predictive modeling?
   - Unbiasedness means that the expectation of the estimator is equal to the population value we are estimating. 

@@ -5,7 +5,7 @@
 
 #### 2. What is R2? What are some other metrics that could be better than R2 and why?
   - goodness of fit measure. variance explained by the regression / total variance
-  - the more predictors you add, the higher R^2 becomes.
+  - the more predictors you add, the higher R^2 becomes. Potential overfitting issue.
     - hence use adjusted R^2 which adjusts for the degrees of freedom 
     - or train error metrics
 
@@ -15,6 +15,8 @@
   - All samples are close to the edge of the sample. And this is a bad news because prediction is much more difficult near the edges of the training sample.
   - The sampling density decreases exponentially as p increases and hence the data becomes much more sparse without significantly more data. 
   - We should conduct PCA to reduce dimensionality
+  - *Distance Concentration: all the pairwise distances between different points n the space converging to the same value as the dimensionality of the data increases. Machine learning models such as clustering or nearest neighbours' methods use distance-based metrics to identify similar of the samples. *
+  - *Data sparsity: training samples to not capture all combinations. Training a model with sparse data could lead to high-variance or overfitting condition.*
 
 #### 4. Is more data always better?
   - Statistically
@@ -41,8 +43,10 @@
 
 #### 8. How can you determine which features are the most important in your model?
   - Linear regression can use p-value
+    - *The p-value for each independent variable tests the H0 that the variable has no correlation with the dependent variable. If the p-value for a variable is less than your significance level, your sample data provide enough evidence to reject the H0 for the entire population.*
   - run the features though a Gradient Boosting Machine or Random Forest to generate plots of relative importance and information gain for each feature in the ensembles.
-  - Look at the variables added in forward variable selection 
+  - Look at the variables added in forward variable selection
+    - *forward stepwise regression: begins with an empty model and adds in variables one by one. Once the model no longer improves with adding more variables, the process stops.*
 
 #### 9. How do you deal with some of your predictors being missing?
   - Remove rows with missing values - This works well if

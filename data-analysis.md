@@ -15,7 +15,7 @@
   - All samples are close to the edge of the sample. And this is a bad news because prediction is much more difficult near the edges of the training sample.
   - The sampling density decreases exponentially as p increases and hence the data becomes much more sparse without significantly more data. 
   - We should conduct PCA to reduce dimensionality
-  - *Distance Concentration: all the pairwise distances between different points n the space converging to the same value as the dimensionality of the data increases. Machine learning models such as clustering or nearest neighbours' methods use distance-based metrics to identify similar of the samples. *
+  - *Distance Concentration: all the pairwise distances between different points n the space converging to the same value as the dimensionality of the data increases. Machine learning models such as clustering or nearest neighbours' methods use distance-based metrics to identify similar of the samples.*
   - *Data sparsity: training samples to not capture all combinations. Training a model with sparse data could lead to high-variance or overfitting condition.*
 
 #### 4. Is more data always better?
@@ -58,15 +58,27 @@
     - Like a random forest, or any tree-based method.
 
 #### 10. You have several variables that are positively correlated with your response, and you think combining all of the variables could give you a good prediction of your response. However, you see that in the multiple linear regression, one of the weights on the predictors is negative. What could be the issue?
-  - Multicollinearity refers to a situation in which two or more explanatory variables in a [multiple regression](https://en.wikipedia.org/wiki/Multiple_regression "Multiple regression") model are highly linearly related. 
+  - [link](https://www.researchgate.net/post/What-does-it-indicating-If-there-is-positive-correlation-but-negative-regression-coefficient)
+  - e.g., imagine height correlates positively with reading ability in children. Consider a more complex model in which age is added. Now age predicts reading and the impact of height is negative. Now add gender and the height effect disappears (because the smaller girls are better readers). In these models it is silly to think of the simple correlation as somehow the effect with the 'correct' sign.
+  - **Multicollinearity** refers to a situation in which two or more explanatory variables in a multiple regression model are highly linearly related. 
   - Leave the model as is, despite multicollinearity. The presence of multicollinearity doesn't affect the efficiency of extrapolating the fitted model to new data provided that the predictor variables follow the same pattern of multicollinearity in the new data as in the data on which the regression model is based.
-  - principal component regression
+  - principal component regression, *partial least squares regression*
+  - *lasso and ridge regression can handle multicollinearity*
 
 #### 11. Let’s say you’re given an unfeasible amount of predictors in a predictive modeling task. What are some ways to make the prediction more feasible?
-  - PCA
+  - [link](https://towardsdatascience.com/11-dimensionality-reduction-techniques-you-should-know-in-2021-dcb9500d388b)
+  - Why a lot of predictors bad:
+    - overfitting
+    - takes care of multicollinearity
+    - removes noise -> increase model accuracy
+  - Principle component analysis (PCA), Factor analysis, linear descriminant analysis (all linear approaches)
+    - FA is not just reduce the dimensionality of the data. It is a useful approach to find latent variables which are not directly measured in a single variable.
+    - LDA: finds a linear combination of input features that optimizes class separability (supervised)
+    - PCA: finds a set of uncorrelated components of maximum variance in a dataset. (nonsupervised)
 
 #### 12. Now you have a feasible amount of predictors, but you’re fairly sure that you don’t need all of them. How would you perform feature selection on the dataset?
   - ridge / lasso / elastic net regression
+  - *Regularization(L1) lass can lead to zero coefficients -> help us in feature selection*
   - Univariate Feature Selection where a statistical test is applied to each feature individually. You retain only the best features according to the test outcome scores
   - Recursive Feature Elimination:  
     - First, train a model with all the feature and evaluate its performance on held out data.
@@ -81,18 +93,24 @@
   - The dataset might be heterogeneous. In which case, it is recommended to cluster datasets into different subsets wisely, and then draw different models for different subsets. Or, use models like non parametric models (trees) which can deal with heterogeneity quite nicely.
 
 #### 15. What is the main idea behind ensemble learning? If I had many different models that predicted the same response variable, what might I want to do to incorporate all of the models? Would you expect this to perform better than an individual model or worse?
+  - *Ensemble learning: multiple learning algorithms to obtain better predictive performance than could be obtained from any of thee constituent learning algorithms alone.*
   - The assumption is that a group of weak learners can be combined to form a strong learner.
   - Hence the combined model is expected to perform better than an individual model.
   - Assumptions:
     - average out biases
     - reduce variance
   - Bagging works because some underlying learning algorithms are unstable: slightly different inputs leads to very different outputs. If you can take advantage of this instability by running multiple instances, it can be shown that the reduced instability leads to lower error. If you want to understand why, the original bagging paper( [http://www.springerlink.com/](http://www.springerlink.com/content/l4780124w2874025/)) has a section called "why bagging works"
+    - [link](https://analyticsindiamag.com/primer-ensemble-learning-bagging-boosting/#:~:text=Bagging%20is%20a%20way%20to,based%20on%20the%20last%20classification.)
+    - *Bagging reduces the variance of a decision tree classifier. Create several subsets of data from training sample chosen randomly with replacement. Each collection of subset data is used to train their decision trees.*
   - Boosting works because of the focus on better defining the "decision edge". By re-weighting examples near the margin (the positive and negative examples) you get a reduced error (see http://citeseerx.ist.psu.edu/vie...)
+    - *Boosting is used to create a collection of predictors. Consecutive trees (random sample) are fit and at every step, the goal is to improve the accuracy from the prior tree. When an input is misclassified by a hyppthesis, its weight is increased so that the next hypothesis is more likely to classify it correctly.*
   - Use the outputs of your models as inputs to a meta-model.   
 
 For example, if you're doing binary classification, you can use all the probability outputs of your individual models as inputs to a final logistic regression (or any model, really) that can combine the probability estimates.  
 
 One very important point is to make sure that the output of your models are out-of-sample predictions. This means that the predicted value for any row in your data-frame should NOT depend on the actual value for that row.
+
+### More project-oriented questions
 
 #### 16. Given that you have wifi data in your office, how would you determine which rooms and areas are underutilized and over-utilized?
   - If the data is more used in one room, then that one is over utilized!
@@ -129,12 +147,23 @@ where  is the ability of person  and  is the difficulty of item}.
 
 #### 25. How would you come up with an algorithm to detect plagiarism in online content?
   - reduce the text to a more compact form (e.g. fingerprinting, bag of words) then compare those with other texts by calculating the similarity
+  - other people's project [link](https://towardsdatascience.com/build-a-plagiarism-checker-using-machine-learning-6538110ce162)
 
 #### 26. You have data on all purchases of customers at a grocery store. Describe to me how you would program an algorithm that would cluster the customers into groups. How would you determine the appropriate number of clusters to include?
+  - Demographic, geographical, pyschographics (social class, lifestyle, personality), behavioral data (spending and consumption habits)
   - K-means
-  - choose a small value of k that still has a low SSE (elbow method)
-  - [Elbow method](https://bl.ocks.org/rpgove/0060ff3b656618e9136b)
+    - choose a small value of k that still has a low SSE (elbow method), within cluster sum of squares (WCSS)
+    - [Elbow method](https://bl.ocks.org/rpgove/0060ff3b656618e9136b)
 
 #### 27. Let’s say you’re building the recommended music engine at Spotify to recommend people music based on past listening history. How would you approach this problem?
-  - content-based filtering
+  - content-based filtering [A good article](https://towardsdatascience.com/how-to-build-an-amazing-music-recommendation-system-4cce2719a572)
+    - Similar genres will sound similar and will come from similar time periods
+    - We can use this idea to build a recommendation system by taking the data points of the songs a user has listened to and recommending songs corresponding to nearby data points.
+      1. compute the average vector of the audio and metadata features for each song that user has listened to.
+      2. Find th n-closest data points in the dataset (excluding the points from the songs in the user's listening history) to this average vector.
+      3. Take these n points and recommend the songs corresponding to them
   - collaborative filtering
+    - user-based approach
+      - It finds users with similar interests and behavior, and considering waht those similar users listened to, it makes a recommendation.
+    - item-based approach
+      - it can take into account what songs the user has considered in the past and recommend new similar songs that the user can enjoy
